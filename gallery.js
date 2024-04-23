@@ -3,11 +3,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
     images.forEach(image => {
         image.addEventListener('click', () => {
-            if (image.style.transform === 'scale(1.5)') {
-                image.style.transform = 'scale(1)';
-            } else {
-                image.style.transform = 'scale(1.5)';
-            }
+            toggleZoom(image);
         });
     });
+
+    function toggleZoom(image) {
+        if (image.style.transform === 'scale(1.5)') {
+            image.style.transform = 'scale(1)';
+        } else {
+            resetZoom();
+            image.style.transform = 'scale(1.5)';
+        }
+    }
+
+    function resetZoom() {
+        images.forEach(image => {
+            image.style.transform = 'scale(1)';
+        });
+    }
 });
